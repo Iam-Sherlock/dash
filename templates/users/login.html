@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #31708f;
+            text-decoration: none;
+        }
+
+        button[type="submit"] {
+            display: block;
+            margin: 0 auto;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form action="" method="POST">
+            {% csrf_token %} 
+            <h3>Login</h3>
+            {% for field in form %}
+            <p>
+                {{ field.label }}: <br />
+                {{ field }}
+            </p>
+            {% endfor %}
+            <button type="submit">Login</button>
+        </form>
+    </div>
+    <p>Don't have an account? <a href="{% url 'register' %}">Signup here</a></p>
+    <p>Or go to your <a href="{% url 'dashboard' %}">Dashboard</a></p>
+</body>
+</html>

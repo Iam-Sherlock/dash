@@ -1,0 +1,119 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ user.username}}'s User Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #3d7e9a;
+        }
+
+        .course-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .course-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+
+        .course-name {
+            color: #2d6181;
+            font-weight: bold;
+        }
+
+        .total-sum {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            color: #2d6181;
+        }
+
+        button[type="submit"] {
+            display: block;
+            margin: 20px auto 0;
+            background-color: #3d7e9a;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #2d6181;
+        }
+    </style>
+    </style>
+</head>
+<body>
+    
+    <div class="container">
+        <h3>Select Courses</h3>
+        <form action="" method="POST">
+            {% csrf_token %}
+            <div class="course-item">
+                <input type="checkbox" name="course" value="c">
+                <span>C - $1000</span>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" name="course" value="cpp">
+                <span>C++ - $3000</span>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" name="course" value="python">
+                <span>Python - $4000</span>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" name="course" value="java">
+                <span>Java - $4000</span>
+            </div>
+            <div class="course-item">
+                <input type="checkbox" name="course" value="golang">
+                <span>Golang - $5000</span>
+            </div>
+            <div class="total-sum">
+                Total: $<span id="total-sum">0</span>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+        <a href="{% url 'logout' %}">Logout?</a>
+    </div>
+
+</body>
+<script>
+    const checkboxes = document.querySelectorAll('input[name="course"]');
+    const totalSumElement = document.getElementById('total-sum');
+
+    checkboxes.forEach(function (checkbox) {
+        checkbox.addEventListener('change', function () {
+            let totalSum = 0;
+            checkboxes.forEach(function (checkbox) {
+                if (checkbox.checked) {
+                    const price = parseInt(checkbox.nextElementSibling.innerText.split('$')[1]);
+                    totalSum += price;
+                }
+            });
+            totalSumElement.innerText = totalSum;
+        });
+    });
+</script>
+</html>

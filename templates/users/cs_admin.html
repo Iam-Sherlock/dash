@@ -1,0 +1,26 @@
+<html>
+<head>
+    <title>Course Selection Admin</title>
+</head>
+<body>
+    <h1>Course Selection Admin</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Course</th>
+                <th>User</th>
+                <th>Submission Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for selection in selections %}
+            <tr>
+                <td>{{ selection.course }}</td>
+                <td>{{ selection.user.username }}</td>
+                <td>{{ selection.submission_date }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

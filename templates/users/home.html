@@ -1,0 +1,50 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        .alert {
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 4px;
+        }
+
+        .alert-success {
+            background-color: #dff0d8;
+            border: 1px solid #d6e9c6;
+            color: #3c763d;
+        }
+
+        h3 {
+            margin: 0;
+        }
+
+        a {
+            color: #31708f;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+{% if user.is_authenticated %}
+<div class="alert alert-success" role="alert">
+  <h3>Welcome {{ user.username }}!</h3>
+  <a href="{% url 'logout' %}">Logout?</a>
+</div>
+{% else %}
+<div class="alert alert-success" role="alert">
+  <h3>Welcome!</h3>
+  <a href="{% url 'register' %}">Signup</a>
+  <a href="{% url 'login' %}">Login</a>
+</div>
+{% endif %}
+</body>
+</html>
